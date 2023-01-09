@@ -1,4 +1,3 @@
-import re
 from itertools import chain
 
 import numpy as np
@@ -21,12 +20,10 @@ def calc_scenic_score(y, x, data) -> int:
 
 
 if __name__ == "__main__":
-    with open("input.txt") as f:
-        data = np.array(
-            [list(map(int, re.findall(r"\d", line))) for line in f.readlines()]
-        )
+    with open("demo.txt") as f:
+        data = np.array([list(x.strip()) for x in f.readlines()], int)
         size = data.shape[0]
-        vis = np.zeros((size, size), dtype=np.int32)
+        vis = np.zeros_like(data)
 
         for _ in range(2):
             for y, row in enumerate(data):
