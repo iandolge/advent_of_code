@@ -38,12 +38,13 @@ class Monkey:
         self.items.extend(items)
 
     def consider_items(self):
+        tests = 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19
         true_items = []
         false_items = []
         while self.items:
-            self.items[0] = self.inspect(self.items[0]) // 3
+            self.items[0] = self.inspect(self.items[0])  # // 3 for part 1
             if self.items[0] % self.test == 0:
-                true_items.append(self.items.pop(0))
+                true_items.append(self.items.pop(0) % tests)
             else:
                 false_items.append(self.items.pop(0))
         return ((self.true_target, true_items), (self.false_target, false_items))
@@ -64,16 +65,13 @@ def main():
     for monkey in lines.split("\n\n"):
         monkeys.append(Monkey(monkey))
 
-    for i in range(20):
+    for i in range(10000):  # 20 for part 1
         play_round(monkeys)
     activity = [x.num_inspections for x in monkeys]
-    print(activity)
     activity.sort()
     monkey_business = activity[-1] * activity[-2]
 
-    print(f"part one: {monkey_business}")
-
-    # print(f"part two: \n{screen}")
+    print(monkey_business)
 
 
 if __name__ == "__main__":
