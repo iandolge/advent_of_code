@@ -1,6 +1,3 @@
-# [list(map(int, re.findall(r"\d+", line))) for line in data.splitlines()]
-
-
 class Monkey:
     def __init__(self, details: str):
         self.num_inspections = 0
